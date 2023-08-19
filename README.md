@@ -5,11 +5,17 @@ They will also need you to download a few tools for them to get their business s
 
 ## Services and Application:
 SSH-client
+
 Apache2
+
 MySQL
+
 PHP
+
 Metasploit Framework
+
 Nmap
+
 Amap
 
 ## Admins:
