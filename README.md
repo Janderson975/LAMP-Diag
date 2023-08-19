@@ -21,8 +21,11 @@ Derrick
 
 ## Users:
 Paula
+
 Hannah
+
 Daniel
-Please add the user dev and give him a password
-Please add the users dev, cyber, Derrick, and Daniel to the group Exploiters
-Please add the users dev and TK6 to the group new hires
+
+Please add the user dev and give him a password.
+Please add the users dev, cyber, Derrick, and Daniel to the group Exploiters.
+Please add the users dev and Daniel to the group new hires.
