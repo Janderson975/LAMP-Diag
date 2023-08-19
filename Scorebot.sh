@@ -102,7 +102,7 @@ do
 	check '! cat /etc/group | grep "sudo" | grep "Hannah"' '4' 'User Hannah is not an admin +1' '1'
 	check '! cat /etc/passwd | grep "dave"' '5' 'Unauthorized user dave removed +2' '2'
  	check 'cat /etc/group | grep "dev"' '8' 'User dev created +1' '1'
-	check '! cat /etc/shadow | grep Kyle | grep "!"' '6' 'User dev has a password' +2' '2'
+	check '! cat /etc/shadow | grep Kyle | grep "!"' '6' 'User dev has a password +2' '2'
 	check '! cat /etc/shadow | grep "Kali"' '7' 'Hidden user Kali removed +4' '4'
 	check 'cat /etc/group | grep "sudo" | grep "Derrick"' '8' 'User Derrick is an administrator +1' '1'
 	check 'cat /etc/group | grep "Exploiters" | grep "Derrick"' '9' 'Users added to group Exploiters +1' '1'
