@@ -94,11 +94,12 @@ do
 	update-found
 
  #Forensics
-	#check 'cat /home/cyber/Desktop/Forensics1 | grep "i like to move it move it"' '1' 'Forensics 1 Correct +5' '5'
+	check 'cat /home/cyber/Desktop/Forensics1 | grep "!n$3cUr3"' '1' 'Forensics 1 Correct +5' '5'
 	#check 'cat /home/cyber/Desktop/Forensics2 | grep "youareanidiot.py"' '2' 'Forensics 2 Correct +5' '5'
 	#check 'cat /home/cyber/Desktop/Forensics3 | grep "3861643f9374c2355e50c67ea86bd880"' '3' 'Forensics 3 Correct +5' '5'
 	
-	#Vulns
+#Vulns
+	#README Vulns
 	check '! cat /etc/group | grep "sudo" | grep "Hannah"' '4' 'User Hannah is not an admin +1' '1'
 	check '! cat /etc/passwd | grep "dave"' '5' 'Unauthorized user dave removed +2' '2'
  	check 'cat /etc/group | grep "dev"' '8' 'User dev created +1' '1'
@@ -111,29 +112,33 @@ do
    	check 'dpkg -l | grep "nmap"' '11' 'Installed nmap +1' '1'
     	check '! dpkg -l | grep "openssh-server"' '12' 'Removed SSH server +2' '2'
     	
- 
+ 	#File Properties
 	check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '9' 'Correct file permissions set on \/etc\/shadow +3' '3'
   	check 'ls -ald /var/tmp | grep "\drwxrwxrwt" || ls -ald /var/tmp | grep "\drwxrwxrwt"' '10' 'Stickybit set on \/var\/tmp +3' '3'
   	check '! ls -al /usr/bin/cp | grep "\-rwsr-xr-x"' '11' 'Removed SUID on \/bin\/usr\/cp +5' '5'
   	#check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '12' 'Correct file permissions set on \/etc\/shadow +3' '3'
    	#check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '12' 'Correct file permissions set on \/etc\/shadow +3' '3'
  
-
+	#System Security
 	check 'cat /etc/sysctl.conf | grep ^"net.ipv4.conf.all.log_martians" | grep "1"' '14' 'Logging martian packets enabled +3' '3'
 	check 'cat /etc/sysctl.conf | grep ^"kernel.randomize_va_space" | grep "1"' '15' 'ASLR is enabled +3' '3'
 	check 'cat /etc/login.defs | grep "PASS_MAX_DAYS" | grep "90"' '16' 'Max password days set to 90 +1' '1'
 	check 'cat /etc/security/pwquality.conf | grep "minlen" | grep "16"' '17' 'Password minimum legnth set to 16 +2' '2'
 	check 'cat /etc/pam.d/common-auth | grep "deny=5"' '18' 'Correct PAM authentication configuration +2' '2'
- 
+
+	#Apache2 
 	check 'cat /etc/apache2/conf-available/security.conf | grep "FileEtag" | grep -iF "none"' '19' 'ETag headers are disabled +3' '3'
 	check 'cat /etc/apache2/conf-available/security.conf | grep "ServerTokens Prod"' '20' 'Server Tokens set to Prod +3' '3'
  	check 'cat /etc/apache2/conf-available/security.conf | grep "ServerSignature Off"' '20' 'Server Signature Turned Off +3' '3'
 	check 'cat /etc/apache2/ports.conf | grep "Listen 443"' '23' 'Apache runs on port 443 +2' '2'
  	check 'cat /etc/php/8.1/apache2 | grep "disable_functions"' '24' 'Disabled php eval on apache2 server +5' '5'
-  
- 	check '! mysql -u root -e "use db; show tables;" | grep "password"' '20' 'MySql database containing password removed +2' '2'
-	#!!!!!!!check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "local-infile" | grep "0"' '21' 'Local infile set to 0 +4' '4'
+
+  	#MySQL
+ 	check '! ls /var/lib/mysql/mysql | grep "passwords.ibd"' '20' 'MySql database containing password removed +2' '2'
+	check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "local-infile" | grep "0"' '21' 'Local infile set to 0 +4' '4'
+	check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "log=/var/log/mysql.log"' '21' 'Turned on Mysql logs +4' '4'
  
+  	#Defense
 	check 'ufw status | grep " active"' '22' 'UFW is enabled +1' '1'
  	check 'ufw status verbose | grep "high"' '22' 'UFW logging set to high +1' '1'
 	check 'cat /home/cyber/snap/firefox/common/.mozilla/firefox/h8bdcys2.default/prefs.js | grep "https_only_mode\"" | grep "true"' '23' 'HTTPS only mode is enabled +3' '3'
@@ -141,7 +146,7 @@ do
  	check '! cat ~/.bashrc | grep "sl"' '26' 'Removed malicious alias +3' '3'
   	check '! ls /var | grep "payload.elf"' '27' 'Removed meterpreter backdoor +2' '2'
 	
-	#penalties
+#Penalties
 	check-pen '! netstat -tulpn | grep apache2 | cut -d " " -f15 | grep ":443"$' 'p1' 'Apache2 is Disabled or Running on Wrong Port -10' '10'
 	check-pen '! netstat -tulpn | grep mysql | cut -d " " -f16' 'p2' 'MySQL is Disabled -10' '10'
 	check-pen '! cat /etc/passwd | grep "cyber"' 'p3' 'User cyber was Removed -3' '3'
