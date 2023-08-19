@@ -99,11 +99,11 @@ do
 	check 'cat /home/cyber/Desktop/Forensics3 | grep "3861643f9374c2355e50c67ea86bd880"' '3' 'Forensics 3 Correct +5' '5'
 	
 	#Vulns
-	!check '! cat /etc/group | grep "sudo" | grep "TK6"' '4' 'User TK6 is not an admin +1' '1'
+	!check '! cat /etc/group | grep "sudo" | grep "Hannah"' '4' 'User Hannah is not an admin +1' '1'
 	!check '! cat /etc/passwd | grep "dave"' '5' 'Unauthorized user dave removed +2' '2'
-	!check '! cat /etc/shadow | grep TK2 | grep "\$y\$j9T\$Jz0F23Stn6RsiqChH9z1z"' '6' 'Insecure password on TK2 changed +2' '2'
+	!check '! cat /etc/shadow | grep Kyle | grep "\$y\$j9T\$Jz0F23Stn6RsiqChH9z1z"' '6' 'Insecure password on Kyle changed +2' '2'
 	!check '! cat /etc/shadow | grep "Kali"' '7' 'Hidden user Kali removed +4' '4'
-	!check 'cat /etc/group | grep "sudo" | grep "TK3"' '8' 'User TK3 is an administrator +1' '1'
+	!check 'cat /etc/group | grep "sudo" | grep "Derrick"' '8' 'User Derrick is an administrator +1' '1'
 	!check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '9' 'Correct file permissions set on \/etc\/shadow +3' '3'
   	check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '10' 'Correct file permissions set on \/etc\/shadow +3' '3'
   	check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '11' 'Correct file permissions set on \/etc\/shadow +3' '3'
@@ -126,11 +126,11 @@ do
 	check-pen '! netstat -tulpn | grep apache2 | cut -d " " -f15 | grep ":80"$' 'p1' 'Apache2 is Disabled or Running on Wrong Port -10' '10'
 	check-pen '! netstat -tulpn | grep mysql | cut -d " " -f16 | grep ":3306"$' 'p2' 'MySQL is Disabled or Running on Wrong Port -10' '10'
 	check-pen '! cat /etc/passwd | grep "cyber"' 'p3' 'User cyber was Removed -3' '3'
-	check-pen '! cat /etc/passwd | grep "TK2"' 'p4' 'User TK2 was Removed -3' '3'
-	check-pen '! cat /etc/passwd | grep "TK3"' 'p5' 'User TK3 was Removed -3' '3'
-	check-pen '! cat /etc/passwd | grep "TK4"' 'p6' 'User TK4 was Removed -3' '3'
-	check-pen '! cat /etc/passwd | grep "TK5"' 'p7' 'User TK5 was Removed -3' '3'
-	check-pen '! cat /etc/passwd | grep "TK6"' 'p8' 'User TK6 was Removed -3' '3'
+	check-pen '! cat /etc/passwd | grep "Kyle"' 'p4' 'User Kyle was Removed -3' '3'
+	check-pen '! cat /etc/passwd | grep "Derrick"' 'p5' 'User Derrick was Removed -3' '3'
+	check-pen '! cat /etc/passwd | grep "Paula"' 'p6' 'User Paula was Removed -3' '3'
+	check-pen '! cat /etc/passwd | grep "Hannah"' 'p7' 'User Hannah was Removed -3' '3'
+	check-pen '! cat /etc/passwd | grep "Daniel"' 'p8' 'User Daniel was Removed -3' '3'
 	
 	
 	#wait 10 seconds
