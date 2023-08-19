@@ -95,8 +95,7 @@ do
 
  #Forensics
 	check 'cat /home/cyber/Desktop/Forensics1 | grep "!n$3cUr3"' '1' 'Forensics 1 Correct +5' '5'
-	#check 'cat /home/cyber/Desktop/Forensics2 | grep "youareanidiot.py"' '2' 'Forensics 2 Correct +5' '5'
-	#check 'cat /home/cyber/Desktop/Forensics3 | grep "3861643f9374c2355e50c67ea86bd880"' '3' 'Forensics 3 Correct +5' '5'
+	check 'cat /home/cyber/Desktop/Forensics2 | grep "elf"' '2' 'Forensics 2 Correct +5' '5'
 	
 #Vulns
 	#README Vulns
@@ -116,8 +115,9 @@ do
 	check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '9' 'Correct file permissions set on \/etc\/shadow +3' '3'
   	check 'ls -ald /var/tmp | grep "\drwxrwxrwt" || ls -ald /var/tmp | grep "\drwxrwxrwt"' '10' 'Stickybit set on \/var\/tmp +3' '3'
   	check '! ls -al /usr/bin/cp | grep "\-rwsr-xr-x"' '11' 'Removed SUID on \/bin\/usr\/cp +5' '5'
-  	#check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '12' 'Correct file permissions set on \/etc\/shadow +3' '3'
-   	#check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '12' 'Correct file permissions set on \/etc\/shadow +3' '3'
+  	check 'ls -al /usr/bin/apt | grep "\-rwxr-xr-x"' '11' 'Correct properties on \/usr\/bin\/apt +5' '5'
+   	check 'ls -al /usr/bin/apt-get | grep "\-rwxr-xr-x"' '11' 'Correct properties on \/usr\/bin\/apt-get +5' '5'
+   	check 'ls -al /usr/sbin/userdel | grep "\-rwxr-xr-x"' '11' 'Correct properties on \/usr\/sbin\/userdel +5' '5'
  
 	#System Security
 	check 'cat /etc/sysctl.conf | grep ^"net.ipv4.conf.all.log_martians" | grep "1"' '14' 'Logging martian packets enabled +3' '3'
@@ -145,7 +145,10 @@ do
 	check '! cat /var/spool/cron/crontabs/root | grep "payload.elf"' '25' 'Removed malicious cronjob +3' '3'
  	check '! cat ~/.bashrc | grep "sl"' '26' 'Removed malicious alias +3' '3'
   	check '! ls /var | grep "payload.elf"' '27' 'Removed meterpreter backdoor +2' '2'
-	
+
+	#APT
+ 	check 'cat /etc/apt/sources/list | grep "deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse"' '24' 'Correct repository pull +5' '5'
+  
 #Penalties
 	check-pen '! netstat -tulpn | grep apache2 | cut -d " " -f15 | grep ":443"$' 'p1' 'Apache2 is Disabled or Running on Wrong Port -10' '10'
 	check-pen '! netstat -tulpn | grep mysql | cut -d " " -f16' 'p2' 'MySQL is Disabled -10' '10'
