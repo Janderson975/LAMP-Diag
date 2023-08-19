@@ -107,6 +107,10 @@ do
 	check 'cat /etc/group | grep "sudo" | grep "Derrick"' '8' 'User Derrick is an administrator +1' '1'
 	check 'cat /etc/group | grep "Exploiters" | grep "Derrick"' '9' 'Users added to group Exploiters +1' '1'
  	check 'cat /etc/group | grep "New_Hires" | grep "Daniel"' '9' 'Users added to group New_Hires +1' '1'
+  	check 'ls /var/lib/dpkg/info | grep "matasploit-framework"' '10' 'Installed metasploit framework +2' '2'
+   	check 'dpkg -l | grep "nmap"' '11' 'Installed nmap +1' '1'
+    	check '! dpkg -l | grep "openssh-server"' '12' 'Removed SSH server +2' '2'
+    	
  
 	check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '9' 'Correct file permissions set on \/etc\/shadow +3' '3'
   	check 'ls -ald /var/tmp | grep "\drwxrwxrwt" || ls -ald /var/tmp | grep "\drwxrwxrwt"' '10' 'Stickybit set on \/var\/tmp +3' '3'
@@ -126,7 +130,9 @@ do
 	check 'ufw status | grep " active"' '22' 'UFW is enabled +1' '1'
  	check 'ufw status verbose | grep "high"' '22' 'UFW logging set to high +1' '1'
 	check 'cat /home/cyber/snap/firefox/common/.mozilla/firefox/h8bdcys2.default/prefs.js | grep "https_only_mode\"" | grep "true"' '23' 'HTTPS only mode is enabled +3' '3'
-	check '! cat /var/spool/cron/crontabs/root | grep "payload.elf" '25' 'Removed malicious cronjob +3' '3'
+	check '! cat /var/spool/cron/crontabs/root | grep "payload.elf"' '25' 'Removed malicious cronjob +3' '3'
+ 	check '! cat ~/.bashrc | grep "sl"' '26' 'Removed malicious alias +3' '3'
+  	check '! ls /var | grep "payload.elf"' '27' 'Removed meterpreter backdoor +2' '2'
 	
 	#penalties
 	check-pen '! netstat -tulpn | grep apache2 | cut -d " " -f15 | grep ":443"$' 'p1' 'Apache2 is Disabled or Running on Wrong Port -10' '10'
