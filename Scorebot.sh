@@ -116,6 +116,7 @@ do
   	check 'ls -ald /var/tmp | grep "\drwxrwxrwt" || ls -ald /var/tmp | grep "\drwxrwxrwt"' '10' 'Stickybit set on \/var\/tmp +3' '3'
   	check '! ls -al /usr/bin/cp | grep "\-rwsr-xr-x"' '11' 'Removed SUID on \/bin\/usr\/cp +5' '5'
   	#check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '12' 'Correct file permissions set on \/etc\/shadow +3' '3'
+   	#check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '12' 'Correct file permissions set on \/etc\/shadow +3' '3'
  
 
 	check 'cat /etc/sysctl.conf | grep ^"net.ipv4.conf.all.log_martians" | grep "1"' '14' 'Logging martian packets enabled +3' '3'
@@ -123,10 +124,16 @@ do
 	check 'cat /etc/login.defs | grep "PASS_MAX_DAYS" | grep "90"' '16' 'Max password days set to 90 +1' '1'
 	check 'cat /etc/security/pwquality.conf | grep "minlen" | grep "16"' '17' 'Password minimum legnth set to 16 +2' '2'
 	check 'cat /etc/pam.d/common-auth | grep "deny=5"' '18' 'Correct PAM authentication configuration +2' '2'
- 	#!!!!!!!check '! ls -al /var/www/ | grep "\.\.\." | grep "\->"' '18' 'Symbolic link to \/ directory in \/var\/www\/ removed +4' '4'
+ 
 	check 'cat /etc/apache2/conf-available/security.conf | grep "FileEtag" | grep -iF "none"' '19' 'ETag headers are disabled +3' '3'
-	check '! mysql -u root -e "use db; show tables;" | grep "password"' '20' 'MySql database containing password removed +2' '2'
+	check 'cat /etc/apache2/conf-available/security.conf | grep "ServerTokens Prod"' '20' 'Server Tokens set to Prod +3' '3'
+ 	check 'cat /etc/apache2/conf-available/security.conf | grep "ServerSignature Off"' '20' 'Server Signature Turned Off +3' '3'
+	check 'cat /etc/apache2/ports.conf | grep "Listen 443"' '23' 'Apache runs on port 443 +2' '2'
+ 	check 'cat /etc/php/8.1/apache2 | grep "disable_functions"' '24' 'Disabled php eval on apache2 server +5' '5'
+  
+ 	check '! mysql -u root -e "use db; show tables;" | grep "password"' '20' 'MySql database containing password removed +2' '2'
 	#!!!!!!!check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "local-infile" | grep "0"' '21' 'Local infile set to 0 +4' '4'
+ 
 	check 'ufw status | grep " active"' '22' 'UFW is enabled +1' '1'
  	check 'ufw status verbose | grep "high"' '22' 'UFW logging set to high +1' '1'
 	check 'cat /home/cyber/snap/firefox/common/.mozilla/firefox/h8bdcys2.default/prefs.js | grep "https_only_mode\"" | grep "true"' '23' 'HTTPS only mode is enabled +3' '3'
@@ -143,6 +150,7 @@ do
 	check-pen '! cat /etc/passwd | grep "Paula"' 'p6' 'User Paula was Removed -3' '3'
 	check-pen '! cat /etc/passwd | grep "Hannah"' 'p7' 'User Hannah was Removed -3' '3'
 	check-pen '! cat /etc/passwd | grep "Daniel"' 'p8' 'User Daniel was Removed -3' '3'
+ 	check-pen '! dpkg -l | grep "openssh-client"' 'p9' 'SSH-client was Removed -5' '5'
 	
 	
 	#wait 10 seconds
