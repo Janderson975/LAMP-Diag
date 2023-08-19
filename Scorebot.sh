@@ -94,8 +94,8 @@ do
 	update-found
 
  #Forensics
-	check 'cat /home/cyber/Desktop/Forensics1 | grep "!n$3cUr3"' '1' 'Forensics 1 Correct +5' '5'
-	check 'cat /home/cyber/Desktop/Forensics2 | grep "elf"' '2' 'Forensics 2 Correct +5' '5'
+	check 'cat /home/cyber/Desktop/Forensics1.txt | grep "!n$3cUr3"' '1' 'Forensics 1 Correct +5' '5'
+	check 'cat /home/cyber/Desktop/Forensics2.txt | grep "elf"' '2' 'Forensics 2 Correct +5' '5'
 	
 #Vulns
 	#README Vulns
