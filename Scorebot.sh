@@ -105,12 +105,15 @@ do
 	check '! cat /etc/shadow | grep Kyle | grep "!"' '6' 'User dev has a password' +2' '2'
 	check '! cat /etc/shadow | grep "Kali"' '7' 'Hidden user Kali removed +4' '4'
 	check 'cat /etc/group | grep "sudo" | grep "Derrick"' '8' 'User Derrick is an administrator +1' '1'
+	check 'cat /etc/group | grep "Exploiters" | grep "Derrick"' '9' 'Users added to group Exploiters +1' '1'
+ 	check 'cat /etc/group | grep "New_Hires" | grep "Daniel"' '9' 'Users added to group New_Hires +1' '1'
+ 
 	check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '9' 'Correct file permissions set on \/etc\/shadow +3' '3'
-  	#check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '10' 'Correct file permissions set on \/etc\/shadow +3' '3'
-  	#check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '11' 'Correct file permissions set on \/etc\/shadow +3' '3'
+  	check 'ls -ald /var/tmp | grep "\drwxrwxrwt" || ls -ald /var/tmp | grep "\drwxrwxrwt"' '10' 'Stickybit set on \/var\/tmp +3' '3'
+  	check '! ls -al /usr/bin/cp | grep "\-rwsr-xr-x"' '11' 'Removed SUID on \/bin\/usr\/cp +5' '5'
   	#check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '12' 'Correct file permissions set on \/etc\/shadow +3' '3'
  
-	#!!!!!!check 'ls -al /var/tmp | grep "drwxrwxrwx"' '13' 'Stickybit set on \/var\/tmp\/ +3' '3'
+
 	check 'cat /etc/sysctl.conf | grep ^"net.ipv4.conf.all.log_martians" | grep "1"' '14' 'Logging martian packets enabled +3' '3'
 	check 'cat /etc/sysctl.conf | grep ^"kernel.randomize_va_space" | grep "1"' '15' 'ASLR is enabled +3' '3'
 	check 'cat /etc/login.defs | grep "PASS_MAX_DAYS" | grep "90"' '16' 'Max password days set to 90 +1' '1'
@@ -120,6 +123,7 @@ do
 	check '! mysql -u root -e "use db; show tables;" | grep "password"' '20' 'MySql database containing password removed +2' '2'
 	#!!!!!!!check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "local-infile" | grep "0"' '21' 'Local infile set to 0 +4' '4'
 	check 'ufw status | grep " active"' '22' 'UFW is enabled +1' '1'
+ 	check 'ufw status verbose | grep " high"' '22' 'UFW logging set to high +1' '1'
 	check 'cat /home/cyber/snap/firefox/common/.mozilla/firefox/h8bdcys2.default/prefs.js | grep "https_only_mode\"" | grep "true"' '23' 'HTTPS only mode is enabled +3' '3'
 	
 	
