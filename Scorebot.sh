@@ -130,7 +130,7 @@ do
 	check 'cat /etc/apache2/conf-available/security.conf | grep "FileEtag" | grep -iF "none"' '25' 'ETag headers are disabled +3' '3'
 	check 'cat /etc/apache2/conf-available/security.conf | grep "ServerTokens Prod"' '26' 'Server Tokens set to Prod +3' '3'
  	check 'cat /etc/apache2/conf-available/security.conf | grep "ServerSignature Off"' '27' 'Server Signature Turned Off +3' '3'
-	check 'cat /etc/apache2/ports.conf | grep "Listen 443"' '28' 'Apache runs on port 443 +2' '2'
+	check '! cat /etc/apache2/ports.conf | grep "Listen 80"' '28' 'Apache runs on port 443 +2' '2'
  	check 'cat /etc/php/8.1/apache2 | grep "disable_functions"' '29' 'Disabled php eval on apache2 server +5' '5'
 
   	#MySQL
