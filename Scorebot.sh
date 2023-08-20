@@ -101,7 +101,7 @@ do
 	#README Vulns
 	check '! cat /etc/group | grep "sudo" | grep "Hannah"' '3' 'User Hannah is not an admin +1' '1'
 	check '! cat /etc/passwd | grep "dave"' '4' 'Unauthorized user dave removed +2' '2'
- 	check 'cat /etc/group | grep "dev"' '5' 'User dev created +1' '1'
+ 	check 'cat /etc/group | grep "developer"' '5' 'User developer created +1' '1'
 	check '! cat /etc/shadow | grep Puala | grep "!"' '6' 'User Paula has a password +1' '1'
 	check '! cat /etc/shadow | grep "Kali"' '7' 'Hidden user Kali removed +4' '4'
 	check 'cat /etc/group | grep "sudo" | grep "Derrick"' '8' 'User Derrick is an administrator +1' '1'
