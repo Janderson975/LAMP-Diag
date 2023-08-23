@@ -132,7 +132,7 @@ do
 	check 'cat /etc/apache2/conf-available/security.conf | grep "ServerTokens Prod"' '26' 'Server Tokens set to Prod +3' '3'
  	check '! cat /etc/apache2/conf-available/security.conf | grep "ServerSignature On"' '27' 'Server Signature Turned Off +3' '3'
 	check '! cat /etc/apache2/ports.conf | grep "Listen 80"' '28' 'Apache runs on port 443 +2' '2'
- 	check 'cat /etc/php/8.1/apache2/php.ini | grep "disable_functions"' '29' 'Disabled php eval on apache2 server +5' '5'
+ 	check 'cat /etc/php/8.1/apache2/php.ini | grep "disable_functions = eval"' '29' 'Disabled php eval on apache2 server +5' '5'
 
   	#MySQL
  	check '! ls /var/lib/mysql/mysql | grep "passwords.ibd"' '30' 'MySql database containing password removed +2' '2'
