@@ -93,7 +93,7 @@ while true
 do
 	update-found
 
- #Forensics
+ #Forensics##################
 	check 'cat /home/cyber/Desktop/Forensics1.txt | grep "3cUr3"' '1' 'Forensics 1 Correct +5' '5'
 	check 'cat /home/cyber/Desktop/Forensics2.txt | grep "elf"' '2' 'Forensics 2 Correct +5' '5'
 	
@@ -102,7 +102,7 @@ do
 	check '! cat /etc/group | grep "sudo" | grep "Hannah"' '3' 'User Hannah is not an admin +1' '1'
 	check '! cat /etc/passwd | grep "dave"' '4' 'Unauthorized user dave removed +2' '2'
  	check 'cat /etc/group | grep "developer"' '5' 'User developer created +1' '1'
-	#check '! cat /etc/shadow | grep "Puala" | grep "\!"' '6' 'User Paula has a password +1' '1'
+	check '! cat /etc/shadow | grep "Puala" | grep "\!"' '6' 'User Paula has a password +1' '1'
 	check '! cat /etc/shadow | grep "Kali"' '7' 'Hidden user Kali removed +4' '4'
 	check 'cat /etc/group | grep "sudo" | grep "Derrick"' '8' 'User Derrick is an administrator +1' '1'
 	check 'cat /etc/group | grep "Exploiters" | grep "Derrick"' '9' 'Users added to group Exploiters +1' '1'
@@ -111,7 +111,7 @@ do
    	check 'dpkg -l | grep "nmap"' '12' 'Installed nmap +1' '1'
     	check '! dpkg -l | grep "openssh-server"' '13' 'Removed SSH server +2' '2'
     	
- 	#File Properties
+ 	#File Properties###################
 	check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '14' 'Correct file permissions set on \/etc\/shadow +3' '3'
   	check 'ls -ald /var/tmp | grep "\drwxrwxrwt" || ls -ald /var/tmp | grep "\drwxrwxrwt"' '15' 'Stickybit set on \/var\/tmp +3' '3'
   	check '! ls -al /usr/bin/cp | grep "\-rwsr-xr-x"' '16' 'Removed SUID on \/bin\/usr\/cp +5' '5'
@@ -123,31 +123,31 @@ do
 	check 'cat /etc/sysctl.conf | grep ^"net.ipv4.conf.all.log_martians" | grep "1"' '20' 'Logging martian packets enabled +3' '3'
 	check 'cat /etc/sysctl.conf | grep ^"kernel.randomize_va_space" | grep "1"' '21' 'ASLR is enabled +3' '3'
 	check 'cat /etc/login.defs | grep "PASS_MAX_DAYS" | grep "90"' '22' 'Max password days set to 90 +1' '1'
-	#check 'cat /etc/security/pwquality.conf | grep "minlen = 16"' '17' 'Password minimum legnth set to 16 +2' '2'
+	check 'cat /etc/security/pwquality.conf | grep "minlen = 16"' '23' 'Password minimum legnth set to 16 +2' '2'
 	check 'cat /etc/pam.d/common-auth | grep "deny=5"' '24' 'Correct PAM authentication configuration +2' '2'
 
-	#Apache2 
+	#Apache2###################
 	check 'cat /etc/apache2/conf-available/security.conf | grep "FileEtag" | grep -iF "none"' '25' 'ETag headers are disabled +3' '3'
 	check 'cat /etc/apache2/conf-available/security.conf | grep "ServerTokens Prod"' '26' 'Server Tokens set to Prod +3' '3'
  	check '! cat /etc/apache2/conf-available/security.conf | grep "ServerSignature On"' '27' 'Server Signature Turned Off +3' '3'
 	check '! cat /etc/apache2/ports.conf | grep "Listen 80"' '28' 'Apache runs on port 443 +2' '2'
- 	#check 'cat /etc/php/8.1/apache2 | grep "disable_functions"' '29' 'Disabled php eval on apache2 server +5' '5'
+ 	check 'cat /etc/php/8.1/apache2/php.ini | grep "disable_functions"' '29' 'Disabled php eval on apache2 server +5' '5'
 
-  	#MySQL
+  	#MySQL###################
  	check '! ls /var/lib/mysql/mysql | grep "passwords.ibd"' '30' 'MySql database containing password removed +2' '2'
-	#check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "local-infile" | grep "0"' '31' 'Local infile set to 0 +4' '4'
+	check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "local-infile" | grep "0"' '31' 'Local infile set to 0 +4' '4'
 	check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "log=/var/log/mysql.log"' '32' 'Turned on Mysql logs +4' '4'
  
   	#Defense
 	check 'ufw status | grep " active"' '33' 'UFW is enabled +1' '1'
  	check 'ufw status verbose | grep "high"' '34' 'UFW logging set to high +1' '1'
-	#check 'cat /home/cyber/snap/firefox/common/.mozilla/firefox/h8bdcys2.default/prefs.js | grep "https_only_mode\"" | grep "true"' '35' 'HTTPS only mode is enabled +3' '3'
+	#check 'cat /home/cyber/snap/firefox/common/.mozilla/firefox/i9403nk7.default/prefs.js | grep "https_only_mode\"" | grep "true"' '35' 'HTTPS only mode is enabled +3' '3'
 	check '! cat /var/spool/cron/crontabs/root | grep "payload.elf"' '36' 'Removed malicious cronjob +3' '3'
  	check '! cat ~/.bashrc | grep "sl"' '37' 'Removed malicious alias +3' '3'
   	check '! ls /var | grep "payload.elf"' '38' 'Removed meterpreter backdoor +2' '2'
 
 	#APT
- 	#check 'cat /etc/apt/sources/list | grep "deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse"' '39' 'Correct repository pull +5' '5'
+ 	#check 'cat /etc/apt/sources.list | grep "deb http://archive.ubuntu.com/ubuntu/ jammy main restricted universe multiverse"' '39' 'Correct repository pull +5' '5'
   
 #Penalties
 	check-pen '! netstat -tulpn | grep apache2 | cut -d " " -f15 | grep ":443"$' 'p1' 'Apache2 is Disabled or Running on Wrong Port -10' '10'
