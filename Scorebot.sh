@@ -115,7 +115,7 @@ do
  	#File Properties
 	check 'ls -al /etc/shadow | grep "\-rw-------" || ls -al /etc/shadow | grep "\-rw-------"' '14' 'Correct file permissions set on \/etc\/shadow +3' '3'
   	check 'ls -ald /var/tmp | grep "\drwxrwxrwt" || ls -ald /var/tmp | grep "\drwxrwxrwt"' '15' 'Stickybit set on \/var\/tmp +3' '3'
-  	check '! ls -al /usr/bin/cp | grep "\-rwsr-xr-x"' '16' 'Removed SUID on \/bin\/usr\/cp +5' '5'
+  	check '! ls -al /usr/bin/cp | grep "\-rwsr-xr-x"' '16' 'Removed SUID on \/usr\/bin\/cp +5' '5'
   	check 'ls -al /usr/bin/apt | grep "\-rwxr-xr-x"' '17' 'Correct properties on \/usr\/bin\/apt +5' '5'
    	check 'ls -al /usr/bin/apt-get | grep "\-rwxr-xr-x"' '18' 'Correct properties on \/usr\/bin\/apt-get +5' '5'
    	check 'ls -al /usr/sbin/userdel | grep "\-rwxr-xr-x"' '19' 'Correct properties on \/usr\/sbin\/userdel +5' '5'
