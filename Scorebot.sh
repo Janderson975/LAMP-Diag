@@ -2,6 +2,7 @@
 
 total_found=0
 total_pen=0
+total_percent=""
 
 score_report="/home/cyber/Desktop/ScoreReport.html"
 
