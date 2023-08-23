@@ -137,7 +137,7 @@ do
   	#MySQL
  	check '! ls /var/lib/mysql/mysql | grep "passwords.ibd"' '30' 'MySql database containing password removed +2' '2'
 	check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "local-infile" | grep "0"' '31' 'Local infile set to 0 +4' '4'
-	check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "log=/var/log/mysql.log"' '32' 'Turned on Mysql logs +4' '4'
+	check 'cat /etc/mysql/mysql.conf.d/mysqld.cnf | grep "log = /var/log/mysql.log"' '32' 'Turned on Mysql logs +4' '4'
  
   	#Defense
 	check 'ufw status | grep " active"' '33' 'UFW is enabled +1' '1'
